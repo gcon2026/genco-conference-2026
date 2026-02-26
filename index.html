@@ -30,27 +30,9 @@
 
     /* Small slow stars */
     .particles-layer1 {
-      background: transparent;
-      box-shadow:
-        10vw 20vh 1px rgba(255, 255, 255, 0.8),
-        25vw 50vh 1px rgba(171, 246, 250, 0.6),
-        40vw 10vh 1px rgba(255, 255, 255, 0.5),
-        60vw 60vh 1px rgba(226, 237, 184, 0.7),
-        80vw 30vh 1px rgba(255, 255, 255, 0.8),
-        95vw 80vh 1px rgba(171, 246, 250, 0.5),
-        15vw 90vh 1px rgba(255, 255, 255, 0.9),
-        70vw 95vh 1px rgba(226, 237, 184, 0.6),
-        5vw 5vh 1px rgba(171, 246, 250, 0.8),
-        85vw 15vh 1px rgba(255, 255, 255, 0.7);
-      animation: animStar 50s linear infinite;
-    }
-
-    .particles-layer1::after {
-      content: " ";
-      position: absolute;
-      top: 100vh;
       width: 1px;
       height: 1px;
+      border-radius: 50%;
       background: transparent;
       box-shadow:
         10vw 20vh 1px rgba(255, 255, 255, 0.8),
@@ -63,12 +45,14 @@
         70vw 95vh 1px rgba(226, 237, 184, 0.6),
         5vw 5vh 1px rgba(171, 246, 250, 0.8),
         85vw 15vh 1px rgba(255, 255, 255, 0.7);
+      animation: zoomStar 10s linear infinite;
     }
 
     /* Medium medium-speed stars */
     .particles-layer2 {
       width: 2px;
       height: 2px;
+      border-radius: 50%;
       background: transparent;
       box-shadow:
         20vw 40vh 2px rgba(171, 246, 250, 0.8),
@@ -77,59 +61,44 @@
         30vw 90vh 2px rgba(255, 255, 255, 0.7),
         90vw 10vh 2px rgba(171, 246, 250, 0.9),
         10vw 80vh 2px rgba(255, 255, 255, 0.8);
-      animation: animStar 100s linear infinite;
-    }
-
-    .particles-layer2::after {
-      content: " ";
-      position: absolute;
-      top: 100vh;
-      width: 2px;
-      height: 2px;
-      background: transparent;
-      box-shadow:
-        20vw 40vh 2px rgba(171, 246, 250, 0.8),
-        50vw 20vh 2px rgba(255, 255, 255, 0.9),
-        80vw 70vh 2px rgba(226, 237, 184, 0.8),
-        30vw 90vh 2px rgba(255, 255, 255, 0.7),
-        90vw 10vh 2px rgba(171, 246, 250, 0.9),
-        10vw 80vh 2px rgba(255, 255, 255, 0.8);
+      animation: zoomStar 7s linear infinite;
+      animation-delay: -3s;
     }
 
     /* Large fast stars/nebula bits */
     .particles-layer3 {
       width: 3px;
       height: 3px;
+      border-radius: 50%;
       background: transparent;
       box-shadow:
         15vw 15vh 3px rgba(171, 246, 250, 1),
         75vw 45vh 3px rgba(226, 237, 184, 1),
         45vw 85vh 3px rgba(255, 255, 255, 1),
-        95vw 95vh 3px rgba(171, 246, 250, 0.8);
-      animation: animStar 150s linear infinite;
+        95vw 95vh 3px rgba(171, 246, 250, 0.8),
+        25vw 85vh 3px rgba(226, 237, 184, 1),
+        65vw 25vh 3px rgba(255, 255, 255, 1);
+      animation: zoomStar 4s linear infinite;
+      animation-delay: -1s;
     }
 
-    .particles-layer3::after {
-      content: " ";
-      position: absolute;
-      top: 100vh;
-      width: 3px;
-      height: 3px;
-      background: transparent;
-      box-shadow:
-        15vw 15vh 3px rgba(171, 246, 250, 1),
-        75vw 45vh 3px rgba(226, 237, 184, 1),
-        45vw 85vh 3px rgba(255, 255, 255, 1),
-        95vw 95vh 3px rgba(171, 246, 250, 0.8);
-    }
-
-    @keyframes animStar {
-      from {
-        transform: translateY(0);
+    @keyframes zoomStar {
+      0% {
+        transform: scale(0.5) translateZ(0);
+        opacity: 0;
       }
 
-      to {
-        transform: translateY(-100vh);
+      20% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(5) translateZ(0);
+        opacity: 0;
       }
     }
 
@@ -278,9 +247,14 @@
 
 <body>
 
-  <div class="particles-layer1"></div>
-  <div class="particles-layer2"></div>
-  <div class="particles-layer3"></div>
+  <div class="particles-layer1" style="transform-origin: 50% 50%;"></div>
+  <div class="particles-layer1" style="transform-origin: 50% 50%; animation-delay: -5s;"></div>
+
+  <div class="particles-layer2" style="transform-origin: 50% 50%;"></div>
+  <div class="particles-layer2" style="transform-origin: 50% 50%; animation-delay: -6.5s;"></div>
+
+  <div class="particles-layer3" style="transform-origin: 50% 50%;"></div>
+  <div class="particles-layer3" style="transform-origin: 50% 50%; animation-delay: -3s;"></div>
 
   <div class="gateway-content glass-panel">
     <h1 class="gateway-title text-gradient">Genco Conference 2026</h1>
