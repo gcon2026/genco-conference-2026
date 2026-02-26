@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Day 1 | Genco Conference 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .agenda-wrapper {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 120px;
+            height: 100%;
+            width: 2px;
+            background: var(--glass-border);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-time {
+            width: 90px;
+            flex-shrink: 0;
+            text-align: right;
+            font-weight: 700;
+            color: var(--accent-primary);
+            padding-top: 10px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 114px;
+            top: 15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-primary);
+            box-shadow: var(--neon-glow-primary);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-speaker {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .download-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 14px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timeline-time {
+                text-align: left;
+                padding-left: 50px;
+                width: auto;
+                padding-top: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header class="global-header">
+        <div class="container nav-container">
+            <a href="home.html" class="logo text-gradient">GENCO'26</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="agenda-day1.html">Agenda Day 1</a>
+                <a href="agenda-day2.html">Agenda Day 2</a>
+                <a href="forum.html">Forum</a>
+                <a href="exhibition.html">Exhibition</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="index.html" class="access-link">Gateway</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container agenda-wrapper">
+        <div class="download-strip">
+            <div>
+                <h1 class="text-gradient" style="margin-bottom: 0;">Agenda: Day 1</h1>
+                <p style="margin-top: 0.5rem;">Oct 12, 2026 - Foundations of the Future Grid</p>
+            </div>
+            <a href="#" class="btn btn-secondary" onclick="alert('PDF download simulated')">Download PDF</a>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Session 1 -->
+            <div class="timeline-item">
+                <div class="timeline-time">09:00 AM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip">Keynote</span>
+                    <h3>Welcome & Opening Address</h3>
+                    <div class="timeline-speaker">Dr. Aris Vance, Minister of Energy</div>
+                    <p>Official launch of Genco 2026 detailing the government's roadmap for carbon-neutrality by 2045
+                        and the imperative of digital transformation.</p>
+                </div>
+            </div>
+
+            <!-- Session 2 -->
+            <div class="timeline-item">
+                <div class="timeline-time">10:30 AM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip">Technical</span><span class="chip">AI</span>
+                    <h3>Generative AI in Load Forecasting</h3>
+                    <div class="timeline-speaker">Dr. Elena Rostova, Lead Data Scientist, Nexus Grid</div>
+                    <p>A deep dive into how transformer architectures are replacing traditional statistical models for
+                        daily utility load predictions with extreme accuracy.</p>
+                </div>
+            </div>
+
+            <!-- Session 3 -->
+            <div class="timeline-item">
+                <div class="timeline-time">12:00 PM</div>
+                <div class="timeline-dot" style="border-color: var(--text-muted); box-shadow: none;"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip"
+                        style="background: rgba(255,255,255,0.1); border-color: gray; color: white;">Networking</span>
+                    <h3>Lunch & Exhibition Walkthrough</h3>
+                    <p>Catered lunch in the main hall. An opportunity to visit the 100+ booths in the Digital Energy
+                        Pavilion.</p>
+                </div>
+            </div>
+
+            <!-- Session 4 -->
+            <div class="timeline-item">
+                <div class="timeline-time">02:00 PM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip">Leadership</span><span class="chip">Policy</span>
+                    <h3>Navigating the Regulatory Sandboxes</h3>
+                    <div class="timeline-speaker">Panel Discussion</div>
+                    <p>Regulatory commissioners and utility CEOs discuss frameworks that encourage rapid deployment of
+                        grid-enhancing technologies without compromising security.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <p>&copy; 2026 Genco Conference.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

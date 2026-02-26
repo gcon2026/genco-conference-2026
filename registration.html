@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Genco Conference 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .registration-wrapper {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .day-selector {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .day-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .day-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .day-label {
+            display: block;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--text-muted);
+        }
+
+        .day-option input[type="radio"]:checked~.day-label {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header class="global-header">
+        <div class="container nav-container">
+            <a href="home.html" class="logo text-gradient">GENCO'26</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="agenda-day1.html">Agenda Day 1</a>
+                <a href="agenda-day2.html">Agenda Day 2</a>
+                <a href="forum.html">Forum</a>
+                <a href="exhibition.html">Exhibition</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="index.html" class="access-link">Gateway</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container registration-wrapper">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h1 class="text-gradient">Secure Your Access</h1>
+            <p>Fill out the form below to request your credentials for Genco 2026.</p>
+        </div>
+
+        <form id="registrationForm" class="glass-panel" novalidate>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" required placeholder="Jane Doe">
+                    <div class="form-error">Please enter your name</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" required placeholder="jane@example.com">
+                    <div class="form-error">Please enter a valid email</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Company / Organization *</label>
+                    <input type="text" class="form-control" required placeholder="Nexus Power">
+                    <div class="form-error">Please enter your company</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Role / Title *</label>
+                    <input type="text" class="form-control" required placeholder="Lead Engineer">
+                    <div class="form-error">Please enter your role</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Country *</label>
+                <select class="form-control" required>
+                    <option value="">Select a country...</option>
+                    <option value="my">Malaysia</option>
+                    <option value="sg">Singapore</option>
+                    <option value="id">Indonesia</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="form-error">Please select a country</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Attendance Days *</label>
+                <div class="day-selector">
+                    <label class="day-option">
+                        <input type="radio" name="days" value="day1" required>
+                        <span class="day-label">Day 1 Only<br><small>Oct 12</small></span>
+                    </label>
+                    <label class="day-option">
+                        <input type="radio" name="days" value="day2" required>
+                        <span class="day-label">Day 2 Only<br><small>Oct 13</small></span>
+                    </label>
+                    <label class="day-option">
+                        <input type="radio" name="days" value="both" required>
+                        <span class="day-label">Full Pass<br><small>Both Days</small></span>
+                    </label>
+                </div>
+                <div class="form-error" style="display:none;" id="daysError">Please select attendance</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Dietary Requirements (Optional)</label>
+                <input type="text" class="form-control" placeholder="e.g. Vegetarian, Gluten-free">
+            </div>
+
+            <div class="form-group" style="margin-top: 2rem; margin-bottom: 2.5rem;">
+                <label class="checkbox-group">
+                    <input type="checkbox" required>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">I consent to the handling of my data in
+                        accordance with the Genco Privacy Policy. *</span>
+                </label>
+                <div class="form-error">You must accept the privacy policy</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Registration</button>
+        </form>
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <p>&copy; 2026 Genco Conference.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFormValidation('registrationForm', 'Registration submitted successfully. Check your email for credentials.');
+
+            // Custom radio validation workaround for visual
+            const form = document.getElementById('registrationForm');
+            form.addEventListener('submit', (e) => {
+                const rads = document.querySelectorAll('input[name="days"]');
+                let selected = false;
+                rads.forEach(r => { if (r.checked) selected = true; });
+                if (!selected) {
+                    document.getElementById('daysError').style.display = 'block';
+                    e.preventDefault(); // Stop if base validation leaked
+                } else {
+                    document.getElementById('daysError').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

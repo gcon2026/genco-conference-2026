@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibition | Genco Conference 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .exhibition-wrapper {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 1000px;
+        }
+
+        .exhibition-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            flex: 1;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        .exhibitor-list {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            gap: 1rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .list-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .list-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .list-container::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 4px;
+        }
+
+        .exhibitor-item {
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exhibitor-item:hover,
+        .exhibitor-item.active {
+            border-color: var(--accent-primary);
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .exhibitor-name {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .exhibitor-cat {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .booth-number {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .map-container {
+            background: var(--bg-darker);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Simple structural map using CSS for demo purposes instead of full SVG to keep it contained nicely */
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 20px;
+            padding: 40px;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        .booth {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 700;
+            border-radius: 4px;
+            transition: var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .booth.highlight {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--accent-primary);
+            color: var(--text-main);
+            box-shadow: var(--neon-glow-primary);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        /* Mobile tabs */
+        .mobile-tabs {
+            display: none;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.8rem;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 992px) {
+            .exhibition-layout {
+                display: block;
+            }
+
+            .mobile-tabs {
+                display: flex;
+            }
+
+            .exhibitor-list {
+                display: flex;
+                /* Or none based on tab */
+                height: 400px;
+            }
+
+            .map-container {
+                display: none;
+                height: 400px;
+            }
+
+            /* When tags switch */
+            .show-map .exhibitor-list {
+                display: none;
+            }
+
+            .show-map .map-container {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header class="global-header">
+        <div class="container nav-container">
+            <a href="home.html" class="logo text-gradient">GENCO'26</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="agenda-day1.html">Agenda Day 1</a>
+                <a href="agenda-day2.html">Agenda Day 2</a>
+                <a href="forum.html">Forum</a>
+                <a href="exhibition.html">Exhibition</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="index.html" class="access-link">Gateway</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container exhibition-wrapper">
+        <h1 class="text-gradient" style="margin-bottom: 2rem;">Interactive Exhibition Map</h1>
+
+        <div class="mobile-tabs">
+            <button class="tab-btn active" id="tabList">Directory</button>
+            <button class="tab-btn" id="tabMap">Floor Map</button>
+        </div>
+
+        <div class="exhibition-layout" id="exhibitionLayout">
+
+            <!-- List Col -->
+            <div class="exhibitor-list glass-panel">
+                <input type="text" class="search-box" id="searchInput" placeholder="Search exhibitors...">
+
+                <div class="list-container" id="listContainer">
+
+                    <div class="exhibitor-item" data-booth="A1">
+                        <div>
+                            <div class="exhibitor-name">Nexus Grid Solutions</div>
+                            <div class="exhibitor-cat">AI & Analytics</div>
+                        </div>
+                        <div class="booth-number">A1</div>
+                    </div>
+
+                    <div class="exhibitor-item" data-booth="A2">
+                        <div>
+                            <div class="exhibitor-name">Quantum Systems</div>
+                            <div class="exhibitor-cat">Cybersecurity</div>
+                        </div>
+                        <div class="booth-number">A2</div>
+                    </div>
+
+                    <div class="exhibitor-item" data-booth="A3">
+                        <div>
+                            <div class="exhibitor-name">Aero Power Corp</div>
+                            <div class="exhibitor-cat">Hardware Storage</div>
+                        </div>
+                        <div class="booth-number">A3</div>
+                    </div>
+
+                    <div class="exhibitor-item" data-booth="B1">
+                        <div>
+                            <div class="exhibitor-name">V-Grid Innovations</div>
+                            <div class="exhibitor-cat">Blockchain/Decentralization</div>
+                        </div>
+                        <div class="booth-number">B1</div>
+                    </div>
+
+                    <div class="exhibitor-item" data-booth="B2">
+                        <div>
+                            <div class="exhibitor-name">Global Watt Inc.</div>
+                            <div class="exhibitor-cat">Sustainability Metrics</div>
+                        </div>
+                        <div class="booth-number">B2</div>
+                    </div>
+
+                    <div class="exhibitor-item" data-booth="C4">
+                        <div>
+                            <div class="exhibitor-name">EcoPulse Dynamics</div>
+                            <div class="exhibitor-cat">Smart Metering</div>
+                        </div>
+                        <div class="booth-number">C4</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Map Col -->
+            <div class="map-container">
+                <!-- Abstract grid map representation -->
+                <div class="map-grid">
+                    <div class="booth" id="booth-A1">A1</div>
+                    <div class="booth" id="booth-A2">A2</div>
+                    <div class="booth" id="booth-A3">A3</div>
+                    <div class="booth" id="booth-A4">A4</div>
+
+                    <div class="booth" id="booth-B1">B1</div>
+                    <div class="booth" id="booth-B2">B2</div>
+                    <div class="booth" id="booth-B3" style="grid-column: span 2;">B3 (Main)</div>
+
+                    <div class="booth" id="booth-C1">C1</div>
+                    <div class="booth" id="booth-C2">C2</div>
+                    <div class="booth" id="booth-C3">C3</div>
+                    <div class="booth" id="booth-C4">C4</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.exhibitor-item');
+            const booths = document.querySelectorAll('.booth');
+            const searchInput = document.getElementById('searchInput');
+
+            function clearHighlights() {
+                items.forEach(i => i.classList.remove('active'));
+                booths.forEach(b => b.classList.remove('highlight'));
+            }
+
+            function highlightBooth(boothId) {
+                clearHighlights();
+                const item = document.querySelector(`.exhibitor-item[data-booth="${boothId}"]`);
+                const boothMap = document.getElementById(`booth-${boothId}`);
+
+                if (item) item.classList.add('active');
+                if (boothMap) boothMap.classList.add('highlight');
+            }
+
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    const boothId = item.getAttribute('data-booth');
+                    highlightBooth(boothId);
+                });
+            });
+
+            booths.forEach(booth => {
+                booth.addEventListener('click', () => {
+                    const boothId = booth.id.replace('booth-', '');
+                    highlightBooth(boothId);
+                    // Scroll list if possible
+                    const item = document.querySelector(`.exhibitor-item[data-booth="${boothId}"]`);
+                    if (item) {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            });
+
+            // Simple Search
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                items.forEach(item => {
+                    const text = item.innerText.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+
+            // Mobile Tabs Logic
+            const tabList = document.getElementById('tabList');
+            const tabMap = document.getElementById('tabMap');
+            const layout = document.getElementById('exhibitionLayout');
+
+            if (tabList && tabMap && layout) {
+                tabList.addEventListener('click', () => {
+                    tabList.classList.add('active');
+                    tabMap.classList.remove('active');
+                    layout.classList.remove('show-map');
+                });
+
+                tabMap.addEventListener('click', () => {
+                    tabMap.classList.add('active');
+                    tabList.classList.remove('active');
+                    layout.classList.add('show-map');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

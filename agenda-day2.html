@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Day 2 | Genco Conference 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .agenda-wrapper {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 120px;
+            height: 100%;
+            width: 2px;
+            background: var(--glass-border);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-time {
+            width: 90px;
+            flex-shrink: 0;
+            text-align: right;
+            font-weight: 700;
+            color: var(--accent-primary);
+            padding-top: 10px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 114px;
+            top: 15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-secondary);
+            box-shadow: var(--neon-glow-secondary);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-speaker {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .download-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 14px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timeline-time {
+                text-align: left;
+                padding-left: 50px;
+                width: auto;
+                padding-top: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header class="global-header">
+        <div class="container nav-container">
+            <a href="home.html" class="logo text-gradient">GENCO'26</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="agenda-day1.html">Agenda Day 1</a>
+                <a href="agenda-day2.html">Agenda Day 2</a>
+                <a href="forum.html">Forum</a>
+                <a href="exhibition.html">Exhibition</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="index.html" class="access-link">Gateway</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container agenda-wrapper">
+        <div class="download-strip">
+            <div>
+                <h1 class="text-gradient"
+                    style="margin-bottom: 0; background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary)); -webkit-background-clip: text; color: transparent;">
+                    Agenda: Day 2</h1>
+                <p style="margin-top: 0.5rem;">Oct 13, 2026 - Deployment & Resilience</p>
+            </div>
+            <a href="#" class="btn btn-primary" onclick="alert('PDF download simulated')">Download PDF</a>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Session 1 -->
+            <div class="timeline-item">
+                <div class="timeline-time">09:00 AM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip"
+                        style="background: rgba(255,0,234,0.1); border-color: var(--accent-secondary); color: var(--accent-secondary);">Keynote</span>
+                    <h3>Cyber-Physical Security in the Modern Grid</h3>
+                    <div class="timeline-speaker">Marcus Thorne, CISO, Quantum Systems</div>
+                    <p>Addressing the escalating threat matrix in interconnected microgrids and the deployment of
+                        zero-trust architectures.</p>
+                </div>
+            </div>
+
+            <!-- Session 2 -->
+            <div class="timeline-item">
+                <div class="timeline-time">11:00 AM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip">Technical</span><span class="chip">Hardware</span>
+                    <h3>Next-Gen BESS Integration</h3>
+                    <div class="timeline-speaker">Sarah Jenkins, Director of Storage, Aero Power</div>
+                    <p>Overcoming the latency and lifecycle challenges of grid-scale solid-state Battery Energy Storage
+                        Systems.</p>
+                </div>
+            </div>
+
+            <!-- Session 3 -->
+            <div class="timeline-item">
+                <div class="timeline-time">02:00 PM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip">Innovation</span>
+                    <h3>Decentralized Energy Trading via Blockchain</h3>
+                    <div class="timeline-speaker">Dr. Wei Chen, Founder, V-Grid</div>
+                    <p>A live demonstration of peer-to-peer energy trading protocols deployed on a layer-2 consensus
+                        network.</p>
+                </div>
+            </div>
+
+            <!-- Session 4 -->
+            <div class="timeline-item">
+                <div class="timeline-time">04:30 PM</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-panel">
+                    <span class="chip"
+                        style="background: rgba(255,255,255,0.1); border-color: gray; color: white;">Closing</span>
+                    <h3>Conference Wrap-up & Awards</h3>
+                    <p>Summarizing key takeaways, unveiling the 2027 location, and presenting the Innovation Awards.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <p>&copy; 2026 Genco Conference.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
