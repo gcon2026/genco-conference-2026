@@ -122,8 +122,12 @@
     }
 
     @media (max-width: 768px) {
+      .gateway-content {
+        padding: 2rem 1rem;
+      }
+
       .gateway-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
       }
 
       .btn-group {
@@ -132,21 +136,51 @@
       }
 
       .countdown-container {
-        gap: 0.5rem;
+        gap: 0.8rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .countdown-item {
+        min-width: 70px;
+        padding: 0.8rem;
+      }
+
+      .countdown-item span {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gateway-title {
+        font-size: 2.2rem;
+      }
+
+      .gateway-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .countdown-container {
+        gap: 0.4rem;
         margin-bottom: 2rem;
       }
 
       .countdown-item {
-        min-width: 60px;
+        min-width: 55px;
         padding: 0.5rem;
       }
 
       .countdown-item span {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
 
       .countdown-item small {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+      }
+
+      .gateway-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
       }
     }
   </style>
